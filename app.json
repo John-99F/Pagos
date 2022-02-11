@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.johnm99.PasarelaDePagos"
     },
     "web": {
       "favicon": "./assets/favicon.png"

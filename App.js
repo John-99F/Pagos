@@ -4,8 +4,9 @@ import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 
 import MercadoPagoCheckout from '@blackbox-vision/react-native-mercadopago-px';
 
-
 import * as MercadoPagoService from './services/MercaServices';
+
+import mercadopago from 'mercadopago';
 
 const App = () => {
 
@@ -22,17 +23,16 @@ const App = () => {
 
         console.log(`preferenceId`,preferenceId);
         console.log(`Public key `,config.MP_PUBLIC_KEY );
-      
-        const payment = await MercadoPagoCheckout.createPayment({
-          "publicKey":config.MP_PUBLIC_KEY,
-          preferenceId,
-        });
+
         
-        setPaymentResult(payment);
+        
+        const payment1 = await MercadoPagoCheckout.createPayment({
+          preferenceId:`${preferenceId}`,
+          publicKey:`${config.MP_PUBLIC_KEY}`
+        });
+      
+        setPaymentResult(payment1);
         console.log(paymentResult);
-
-
-
       
     } catch (error) {
       console.log(`Error : `, error);
