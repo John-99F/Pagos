@@ -2,11 +2,12 @@ import config from './react-native-config';
 import React, { useState } from 'react';
 import { Text, TextInput, View, Button, StyleSheet } from 'react-native';
 
-import MercadoPagoCheckout from '@blackbox-vision/react-native-mercadopago-px';
+import mercadopago from 'mercadopago'
+
+import { MercadoPagoCheckout } from 'react-native-mercadopago-checkout';
 
 import * as MercadoPagoService from './services/MercaServices';
 
-import mercadopago from 'mercadopago';
 
 const App = () => {
 
@@ -14,7 +15,6 @@ const App = () => {
   const [publickey,setPublic] = useState(null);
 
   const [paymentResult, setPaymentResult] = useState(null);
-
 
   const startCheckout = async () => {
     try {
@@ -24,12 +24,13 @@ const App = () => {
         console.log(`preferenceId`,preferenceId);
         console.log(`Public key `,config.MP_PUBLIC_KEY );
 
-        
-        
-        const payment1 = await MercadoPagoCheckout.createPayment({
-          preferenceId:`${preferenceId}`,
-          publicKey:`${config.MP_PUBLIC_KEY}`
-        });
+ 
+      
+        const payment1 = await MercadoPagoCheckout.startForPayment(
+          preferenceId,
+          config.MP_PUBLIC_KEY,{  
+          backgroundColor: '#414141',
+          enableDarkFont: true});
       
         setPaymentResult(payment1);
         console.log(paymentResult);
